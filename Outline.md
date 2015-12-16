@@ -7,8 +7,6 @@
 - Hour 4 - **Lab 2** - doing some ML type thing
 
 ## Afternoon
-- Hour 1 - An Introduction to Raspberry PI Robot Making and Coding
-- Hour 2 - **Lab 3** - robot building?
-- Hour 3 - Setting up the Task  - this is where we set up the problem that they solve with AI and IoT
-- Hour 3 / 4 - Doing cool suff!
- 
+- Hour 1 - Introduce robot building (kit + examples in C# and JavaScript) and task(s) to solve
+- Hour 2/3 - **Lab 3** - robot building
+- Hour 4 - Show and tell + competitions
