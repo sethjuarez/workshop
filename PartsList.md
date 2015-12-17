@@ -6,6 +6,7 @@
 4. [Chassis Kit](http://amzn.to/1Mji0Kc) - includes wheels, motors, battery pack
 5. [Motor Driver](https://www.pololu.com/product/2511)
 6. AA batteries
+7. USB battery pack
 
 # Pi 2 Windows 10 Kit Contents
 - Raspberry Pi 2
