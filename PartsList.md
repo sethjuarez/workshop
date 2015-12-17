@@ -1,11 +1,11 @@
 # Parts List
 
-To be filled in...
-
-1. Raspberry Pi 2
-2. Sensors (TBD)
-3. Chassis (TBD)
-4. Motor Driver (TBD)
+1. [Pi 2 Windows 10 Kit](http://ms-iot.github.io/content/en-US/AdafruitMakerKit.htm) - see detailed contents below
+2. [Arduino UNO](http://amzn.to/1mpPBNC)
+3. [Reflectance Array](https://www.pololu.com/product/2456) - line following sensor
+4. [Chassis Kit](http://amzn.to/1Mji0Kc) - includes wheels, motors, battery pack
+5. [Motor Driver](https://www.pololu.com/product/2511)
+6. AA batteries
 
 # Pi 2 Windows 10 Kit Contents
 - Raspberry Pi 2
