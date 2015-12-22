@@ -1,0 +1,16 @@
+{
+  "name": "codemash-linefollower",
+  "version": "1.0.0",
+  "description": "Starting code for CodeMash 2016 AI/ML workshop linefollowing robot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Resseguie <david@resseguie.com>",
+  "license": "MIT",
+  "dependencies": {
+    "barcli": "0.0.21",
+    "johnny-five": "^0.9.17",
+    "keypress": "^0.2.1"
+  }
+}
