@@ -2,23 +2,20 @@ var five = require("johnny-five");
 var keypress = require("keypress");
 var Barcli = require("barcli");
 
+const SENSOR_PIN = 4;
+const SPEED = 75;
+const TURN_SPEED = 15;
 
 var board = new five.Board();
 var motor1, motor2;
-var throttle = 20;
+var throttle = 0;
 var dir = 0;
 var calibrating = true;
 
 var eyes;
 
 function drive() {
-  if (throttle > 255) { throttle = 255; }
-  if (throttle < -255) { throttle = -255; }
-
-  if (dir < -50) { dir = -50; }
-  if (dir > 50) { dir = 50; }
-
-
+  // Combine throttle and direction into motor commands
   if ( throttle > 0) {
     motor1.forward(throttle - dir);
     motor2.forward(throttle + dir);    
@@ -30,11 +27,11 @@ function drive() {
   }
 }
 
+// Helper functions to control both motors
 function start() {
   motor1.start();
   motor2.start();
 }
-
 function stop() {
   motor1.stop();
   motor2.stop();
@@ -61,7 +58,7 @@ board.on("ready", function() {
   // Turn on the reflectance array (line sensor)
   // Normally you'd attach to 5v, but that header is
   // covered and in use by our motor driver
-  var raPower = new five.Pin(4);
+  var raPower = new five.Pin(SENSOR_PIN);
   raPower.high();
 
   // Instantiate our reflectance array
@@ -71,10 +68,12 @@ board.on("ready", function() {
     freq: 25
   });
 
+  // Calibrate reflectance array
   eyes.calibrateUntil(function() {
     return !calibrating;
   });
 
+  // [Optional] Use Barcli to visualize sensor output
   var range = [0, 1000];
   var graph1 = new Barcli({
     label: "Sensor 1",
@@ -89,15 +88,6 @@ board.on("ready", function() {
     range: range,
   });
 
-  // Print out the calibrated data we get back from the reflectance array
-  eyes.on("calibratedData", function() {
-    if (!calibrating) {
-      graph1.update(this.values[0]);
-      graph2.update(this.values[1]);
-      graph3.update(this.values[2]);
-    }
-  });
-
   // Inject components into REPL for testing purposes
   board.repl.inject({
     motor1: motor1,
@@ -107,25 +97,27 @@ board.on("ready", function() {
     eyes: eyes
   });
 
+  // Now that bot is ready, listen for input
+  process.stdin.on("keypress", controller);
 });
 
 // Adjust throttle/direction with arrow keys
 function controller(ch, key) {
   if (key) {
     if (key.name === "up") {
-      throttle += 5;
+      throttle = SPEED;
     }
 
     if (key.name === "down") {
-      throttle -= 5;
+      throttle = SPEED * -1;
     }
 
     if (key.name === "left") {
-      dir -= 5;
+      dir = TURN_SPEED * -1;
     }
 
     if (key.name === "right") {
-      dir += 5;
+      dir = TURN_SPEED;
     }
 
     if (key.name === "space") {
@@ -133,16 +125,21 @@ function controller(ch, key) {
       dir = 0;
     }
 
+    // Stop calibration at beginning
     if (key.name === "c") {
       calibrating = false;
     }
 
+    // After changing throttle/dir, apply to motors
     drive();
   }
 }
 
 // Initialize keypress 
 keypress(process.stdin);
-process.stdin.on("keypress", controller);
 process.stdin.setRawMode(true);
 process.stdin.resume();
+
+
+console.log("Calibrate line sensor by moving around black/white areas.");
+console.log("Press 'c' when finished calibrating.");
