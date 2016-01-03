@@ -8,11 +8,12 @@ const TURN_SPEED = 15;
 
 var board = new five.Board();
 var motor1, motor2;
+var eyes;
+
 var throttle = 0;
 var dir = 0;
-var calibrating = true;
 
-var eyes;
+var calibrating = true;
 
 function drive() {
   // Combine throttle and direction into motor commands
@@ -88,6 +89,15 @@ board.on("ready", function() {
     range: range,
   });
 
+  // Display calibrated data we get back from the reflectance array
+  eyes.on("calibratedData", function() {
+    if (!calibrating) {
+      graph1.update(this.values[0]);
+      graph2.update(this.values[1]);
+      graph3.update(this.values[2]);
+    }
+  });
+
   // Inject components into REPL for testing purposes
   board.repl.inject({
     motor1: motor1,
@@ -99,6 +109,10 @@ board.on("ready", function() {
 
   // Now that bot is ready, listen for input
   process.stdin.on("keypress", controller);
+
+  console.log("Calibrate line sensor by moving around black/white areas.");
+  console.log("Press 'c' when finished calibrating.");
+
 });
 
 // Adjust throttle/direction with arrow keys
@@ -128,6 +142,7 @@ function controller(ch, key) {
     // Stop calibration at beginning
     if (key.name === "c") {
       calibrating = false;
+      console.log("\nCalibration complete");
     }
 
     // After changing throttle/dir, apply to motors
@@ -139,7 +154,3 @@ function controller(ch, key) {
 keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
-
-
-console.log("Calibrate line sensor by moving around black/white areas.");
-console.log("Press 'c' when finished calibrating.");
