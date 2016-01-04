@@ -1,7 +1,7 @@
 {
   "name": "codemash-linefollower",
   "version": "1.0.0",
-  "description": "Starting code for CodeMash 2016 AI/ML workshop linefollowing robot",
+  "description": "Starting code for CodeMash 2016 ML/AI workshop's line following robot",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
