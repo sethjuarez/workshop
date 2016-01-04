@@ -1,44 +1,12 @@
-var five = require("johnny-five");
-var keypress = require("keypress");
 var Barcli = require("barcli");
-
-const SENSOR_PIN = 4;
-const SPEED = 75;
-const TURN_SPEED = 15;
+var five = require("johnny-five");
 
 var board = new five.Board();
-var motor1, motor2;
-var eyes;
-
-var throttle = 0;
-var dir = 0;
+var motor1, motor2, eyes;
 
 var calibrating = true;
 
-function drive() {
-  // Combine throttle and direction into motor commands
-  if ( throttle > 0) {
-    motor1.forward(throttle - dir);
-    motor2.forward(throttle + dir);    
-  } else if (throttle < 0) {
-    motor1.reverse((throttle - dir) * -1);
-    motor2.reverse((throttle + dir) * -1);
-  } else {
-    stop();
-  }
-}
-
-// Helper functions to control both motors
-function start() {
-  motor1.start();
-  motor2.start();
-}
-function stop() {
-  motor1.stop();
-  motor2.stop();
-}
-
-
+// Wait for arduino connection to be ready
 board.on("ready", function() {
   // Use pre-packaged shield config for Pololu
   var configs = five.Motor.SHIELD_CONFIGS.POLOLU_DRV8835_SHIELD;
@@ -51,15 +19,13 @@ board.on("ready", function() {
   // turn clockwise and the other should turn counter-clockwise. Switch
   // the poles on one of those motors so that you can use forward()
   // on both and have them work together.
-
   motor1 = new five.Motor(configs.M1);
   motor2 = new five.Motor(configs.M2);
-
 
   // Turn on the reflectance array (line sensor)
   // Normally you'd attach to 5v, but that header is
   // covered and in use by our motor driver
-  var raPower = new five.Pin(SENSOR_PIN);
+  var raPower = new five.Pin(4);
   raPower.high();
 
   // Instantiate our reflectance array
@@ -73,6 +39,11 @@ board.on("ready", function() {
   eyes.calibrateUntil(function() {
     return !calibrating;
   });
+
+  // You need something to stop calibration
+  setTimeout(function() {
+    calibrating = false;
+  }, 3000);
 
   // [Optional] Use Barcli to visualize sensor output
   var range = [0, 1000];
@@ -89,7 +60,7 @@ board.on("ready", function() {
     range: range,
   });
 
-  // Display calibrated data we get back from the reflectance array
+  // This is how you access data from reflectance array
   eyes.on("calibratedData", function() {
     if (!calibrating) {
       graph1.update(this.values[0]);
@@ -98,59 +69,15 @@ board.on("ready", function() {
     }
   });
 
+  // Control motors using Johnny-Five API
+  // e.g. motor1.forward(50)
+
   // Inject components into REPL for testing purposes
+  // so you can play with the components manually
   board.repl.inject({
     motor1: motor1,
     motor2: motor2,
-    start: start,
-    stop: stop,
     eyes: eyes
   });
 
-  // Now that bot is ready, listen for input
-  process.stdin.on("keypress", controller);
-
-  console.log("Calibrate line sensor by moving around black/white areas.");
-  console.log("Press 'c' when finished calibrating.");
-
 });
-
-// Adjust throttle/direction with arrow keys
-function controller(ch, key) {
-  if (key) {
-    if (key.name === "up") {
-      throttle = SPEED;
-    }
-
-    if (key.name === "down") {
-      throttle = SPEED * -1;
-    }
-
-    if (key.name === "left") {
-      dir = TURN_SPEED * -1;
-    }
-
-    if (key.name === "right") {
-      dir = TURN_SPEED;
-    }
-
-    if (key.name === "space") {
-      throttle = 0;
-      dir = 0;
-    }
-
-    // Stop calibration at beginning
-    if (key.name === "c") {
-      calibrating = false;
-      console.log("\nCalibration complete");
-    }
-
-    // After changing throttle/dir, apply to motors
-    drive();
-  }
-}
-
-// Initialize keypress 
-keypress(process.stdin);
-process.stdin.setRawMode(true);
-process.stdin.resume();
