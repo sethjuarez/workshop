@@ -15,17 +15,22 @@ https://github.com/lagodiuk/decision-tree-js
 Or feel free to experiment with any other learning algorithm you find in NPM.
 
 
-## Raspberry Pi 2
+## Alternate Hardware
+
+### Raspberry Pi 2
 
 Optional: If you want to go fully untethered for your bot, you can load your bot's code on the Raspberry Pi and plug the Arduino into it instead of your laptop. The Pi you received with your kit comes with Win10 by default. It should also work with Raspbian if you prefer.
 
 Note, the community is working on Win 10 IoT Core plugin support for Johnny-Five, so check the Johnny-Five website for future release news. That would allow you to run directly off the GPIO pins instead of having to have the Arduino. (You can also use [rasp-io](https://github.com/nebrius/raspi-io) if you're running Raspbian.)
 
+### Photon
 
-## Robot examples
+Optional: If you already attended the Nodebots workshop and built a bot using the Photon, you may also use it here. Just add the reflectance array (line sensor) and you can follow along.
+
+## Robot example Code
 Because we have a limited time for this workshop, we have provided working sample robot code in JavaScript using the Johnny-Five library to get you started. If you participated in the Nodebots workshop or just want to build your own, feel free! Your goal is to replace the manual robot control with your ML/AI algorithm to solve the task. 
 
-1. Ensure that you have Node.js and npm installed on your laptop (see workshop prerequisites for CodeMash mirror)
+1. Ensure that you have Node.js and npm installed on your laptop (see [workshop prerequisites](http://prereqs.codemash.org/) for CodeMash mirror)
 2. Create a project directory and clone this repo for the sample code (cut and paste works fine too for individual files)
 3. Install dependencies using `npm install`
 4. Add your algorithm to solve the chosen task
