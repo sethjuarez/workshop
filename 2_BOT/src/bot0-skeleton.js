@@ -73,7 +73,9 @@ board.on("ready", function() {
   // e.g. motor1.forward(50)
 
   // Inject components into REPL for testing purposes
-  // so you can play with the components manually
+  // so you can play with the components manually.
+  // You might need to comment out the Barcli output
+  // because it competes with REPL console input
   board.repl.inject({
     motor1: motor1,
     motor2: motor2,
