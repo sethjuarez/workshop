@@ -70,7 +70,7 @@ board.on("ready", function() {
   });
 
   // Control motors using Johnny-Five API
-  // e.g. motor1.forward(50)
+  // e.g. motor1.forward(50), motor1.stop()
 
   // Inject components into REPL for testing purposes
   // so you can play with the components manually.
