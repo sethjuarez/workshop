@@ -38,8 +38,8 @@ Because we have a limited time for this workshop, we have provided working sampl
 
 We have given you three starting points depending on your programming experience and/or time available in the workshop.
 
-1. `bot0-skeleton.js` is a basic Johnny-Five app that shows you how to access the motors and sensor. Everything else is up to you.
-2. `bot1-drive.js` adds in some basic driving ability to give you a jumpstart
-3. `bot2-learner.js` is if you're running out of time and want a very basic learner implementation to start with. There is still plenty of room to optimize and improve the results.
+1. `bot0-skeleton.js` is a basic Johnny-Five app that shows you how to access the motors and sensor. Everything else is up to you. Your first task is to add some mechanism for driving the bot (forward, backward, turn, etc), probably with `keypress`, and ensure you're reading the sensor data correctly. Then proceed to the tasks listed below for the other starting points.
+2. `bot1-drive.js` adds in some basic driving ability to give you a jumpstart. This example sets up a simple `drive()` function that controls the robot's motion by combining `throttle` and `dir` values. You'll need to add in a learner that can train against manual driving input (i.e. store the values of the sensor along with throttle and direction input), generate a model, and use that model to predict the correct way to turn in autonomous mode for any given set of sensor readings.
+3. `bot2-learner.js` is if you're running out of time and want a very basic learner implementation to start with. There is still plenty of room to optimize and improve the results. Can you make the robot drive smoother in autonomous mode? Handle a wider variety of path types? Experiment with your inputs and parameters to the Decision Tree implementation. Or swap out the DT library for another learning algorithm you find or write.
 
 
