@@ -9,4 +9,4 @@
 ## Afternoon
 - Hour 1 - Introduce robot building (kit + examples in Javascript) and task to solve
 - Hour 2/3 - **Lab 3** - robot building
-- Hour 4 - Show and tell + competitions
+- Hour 4 - Show and tell
