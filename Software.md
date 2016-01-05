@@ -1,6 +1,6 @@
 # Software
 
-## ML / AI algorithms
+## ML / AI Algorithms
 Here are some ML / AI algorithms in C# and Javascript that you may choose to use for your robot or other project. We also encourage you to use your own implementation from Part 1 of the workshop!
 
 ### C# #
@@ -27,7 +27,7 @@ Note, the community is working on Win 10 IoT Core plugin support for Johnny-Five
 
 Optional: If you already attended the Nodebots workshop and built a bot using the Photon, you may also use it here. Just add the reflectance array (line sensor) and you can follow along.
 
-## Robot example Code
+## Robot Example Code
 Because we have a limited time for this workshop, we have provided working sample robot code in JavaScript using the Johnny-Five library to get you started. If you participated in the Nodebots workshop or just want to build your own, feel free! Your goal is to replace the manual robot control with your ML/AI algorithm to solve the task. 
 
 1. Ensure that you have Node.js and npm installed on your laptop (see [workshop prerequisites](http://prereqs.codemash.org/) for CodeMash mirror)
