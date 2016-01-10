@@ -32,7 +32,7 @@ Note: we don't have many extra batteries, so you may want to disconnect one of t
 
 ## Connecting the Line Sensor
 
-We're using a reflectance sensor array as a "line sensor". It is designed to return a calibrated value between 0 and 1000 to indicate white and black respectively. The sensor needs to be mounted close to the ground (a few mm). You can use twist ties as an easy way to attach the sensor array to your chassis. Or go out to the "Factory" and get creative with some of the other build materials.
+We're using a reflectance sensor array as a "line sensor". It is designed to return a calibrated value between 0 and 1000 to indicate white and black respectively. The sensor needs to be mounted close to the ground (a few mm). You can use twist ties as an easy way to attach the sensor array to your chassis. Or go out to the "Factory" and get creative with some of the other build materials. You'll get best results if the sensor is mounted a few millimeters off the ground.
 
 The Line sensor has five pins that need to be connected to your Arduino. Normally you'd connect `vcc` to the Arduino `5V` pin, but it's covered by the motor shield. Instead, attach it to a digital pin (e.g. pin 4) and we'll just turn it `HIGH` in software to send it 5V. Connect the sensor's `gnd` pin to one of the remaining exposed `gnd` pins on your Arduino. The remaining three pins for each individual sensor of the array needs to be connected to an analog pin on the Arduino. (e.g. "A0", "A1", and "A2")
 
