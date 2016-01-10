@@ -1,7 +1,7 @@
 # Parts List
 
 1. [Arduino UNO](http://amzn.to/1mpPBNC)
-1. [Reflectance Array](https://www.pololu.com/product/2456) - line following sensor
+1. [Reflectance Array](https://www.pololu.com/product/2456) - line following sensor (consider the 8 sensor array for better results)
 1. [Chassis Kit](http://amzn.to/1Mji0Kc) - includes wheels, motors, battery pack
 1. [Motor Driver](https://www.pololu.com/product/2511)
 1. AA batteries
