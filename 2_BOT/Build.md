@@ -1,5 +1,7 @@
 # Let's Build a Robot!
 
+If you didn't get a kit at the conference but want to build your own, check out the [parts list](PartsList.md)
+
 ## Robot Chassis
 
 You have a simple robot chassis kit that you'll need to assemble.
