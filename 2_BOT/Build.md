@@ -18,7 +18,9 @@ Once you have your motor wires soldered, proceed with assembling the robot kit. 
 
 ## Adding the Brains
 
-Once the kit is assembled, you need to place the supplied Arduino on your bot. You can use double sided foam tape or zip ties to attach it. (You might want to wait until you get a working bot to permanently affix the board.) The Arduino must be flashed with the Standad Firmata firmware to work with the Johnny-Five library. We've taken care of that for you by pre-flashing all the boards for the workshop.
+Once the kit is assembled, you need to place the supplied Arduino on your bot. You can use double sided foam tape or zip ties to attach it. (You might want to wait until you get a working bot to permanently affix the board.) Note: The chassis that we are using in the workshop has exposed metal screws for the motor and rear wheel mounts. If the bottom of your Arduino touches these, it can cause a short and either not work properly or, worst case, fry either your Arduino or USB port. It's recommended that you put electrical tape or something else over the exposed metal screws to protect from this.
+
+The Arduino must be flashed with the Standad Firmata firmware to work with the Johnny-Five library. We've taken care of that for you by pre-flashing all the boards for the workshop.
 
 ## Adding the Motor Controller
 
